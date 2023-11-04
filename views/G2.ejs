@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--Head-->
+<%-include ("layout/head.ejs");-%>
+
+    <body>
+        <header class="masthead">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="page-heading">
+                            <h1>G2_Test </h1>
+                            <span>G2_Test Booking Page</span>
+                        </div>
+                    </div>
+                </div>
+        </header>
+        <!-- Navigation-->
+        <%-include ('layout/navigation.ejs');-%>
+            <!-- Page Header-->
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class=" card col-md-10 col-lg-8 col-xl-7" style=" width:100%;max-width: 650px; ">
+
+                        <div class="alert alert-danger alert-dismissible fade signupAlertErr show hideError"
+                            role="alert" style="margin-bottom: 10px;">
+                            <strong class="adderrText">
+                            </strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="color: blue;
+                            background: none;
+                            border: 0;">
+                                <span aria-hidden="true">&times;</span>
+                        </div>
+
+                        <div class="alert alert-success alert-dismissible fade signupAlert show hideSucessMsg"
+                            role="alert" style="margin-bottom: 10px;">
+                            <strong class="adderrText">
+                            </strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="color: blue;
+                        background: none;
+                        border: 0;">
+                                <span aria-hidden="true">&times;</span>
+                        </div>
+
+                        <div class="post-heading">
+
+                            <form class="form-personal mt-4 mb-4" id="g2Form" method="POST" action="">
+                                <h4 class="form-signin-heading  mb-4">Fill Personal Information</h4>
+
+                                <div class="profile-pic">
+                                    <img alt="User Pic"
+                                        src="<%=user.profilePic? user.profilePic : 'https://d30y9cdsu7xlg0.cloudfront.net/png/138926-200.png' %>"
+                                        id="profile-image1" height="200">
+                                </div>
+
+                                <label type="text" class="label" id="txtfirstname"> First
+                                    Name</label>
+
+                                <% if(defaultValue){ %>
+                                    <input type="text" name="firstname" value="" class="input-block-level mb-2"
+                                        placeholder="First Name" required />
+                                    <% } else{ %>
+                                        <input type="text" name="firstname" value='<%=user.firstname %>'
+                                            class="input-block-level mb-2" placeholder="First Name" required />
+                                        <% } %>
+
+                                            <label type="text" class="label" id="txtlastname"> Last Name</label>
+                                            <% if(defaultValue){ %>
+                                                <input type="text" name="lastname" value=""
+                                                    class="input-block-level mb-2" placeholder="Last Name" />
+                                                <% } else{ %>
+                                                    <input type="text" name="lastname" value="<%=user.lastname%>"
+                                                        class="input-block-level mb-2" placeholder="Last Name" />
+                                                    <% } %>
+
+                                                        <label type="text" class="label" id="txtage"> Age</label>
+
+                                                        <% if(defaultValue){ %>
+                                                            <input type="number" name="Age" value=""
+                                                                class="input-block-level mb-2" placeholder="Age"
+                                                                required />
+                                                            <% } else{ %>
+                                                                <input type="number" name="Age" value="<%=user.Age%>"
+                                                                    class="input-block-level mb-2" placeholder="Age"
+                                                                    required />
+                                                                <% } %>
+
+
+                                                                    <label class="label" id="txtage"> License Number
+                                                                    </label>
+                                                                    <% if(defaultValue){ %>
+                                                                        <input type="text" name="licenseno" value=""
+                                                                            class="licenseno input-block-level mb-2"
+                                                                            placeholder="License" required />
+                                                                        <% } else{ %>
+                                                                            <input type="text" name="licenseno"
+                                                                                value="<%=licenseno%>"
+                                                                                class="licenseno input-block-level mb-2"
+                                                                                placeholder="License Number" required />
+                                                                            <% } %>
+                                                                                <small class="error"></small>
+
+
+
+                                                                                <h4
+                                                                                    class="form-signin-heading  mt-4 mb-4">
+                                                                                    Car
+                                                                                    Details</h4>
+
+
+                                                                                <div class="form-group">
+
+                                                                                    <label type="text"
+                                                                                        id="txtcompany">Make</label>
+                                                                                    <% if(defaultValue){ %>
+                                                                                        <input type="text" value=""
+                                                                                            name="make"
+                                                                                            class="input-block-level mb-2"
+                                                                                            placeholder="Make"
+                                                                                            required />
+                                                                                        <% } else{ %>
+                                                                                            <input type="text"
+                                                                                                value="<%=user.car_details.make%>"
+                                                                                                name="make"
+                                                                                                class="input-block-level mb-2"
+                                                                                                placeholder="Make"
+                                                                                                required />
+                                                                                            <% } %>
+                                                                                </div>
+
+                                                                                <label type="text" class="label"
+                                                                                    id="txtmodelname">Model</label>
+
+                                                                                <% if(defaultValue){ %>
+                                                                                    <input type="text" name="modelno"
+                                                                                        value=""
+                                                                                        class="input-block-level mb-2"
+                                                                                        placeholder="Model" required />
+                                                                                    <% } else{ %>
+                                                                                        <input type="text"
+                                                                                            name="modelno"
+                                                                                            value="<%=user.car_details.model%>"
+                                                                                            class="input-block-level mb-2"
+                                                                                            placeholder="Model"
+                                                                                            required />
+                                                                                        <% } %>
+                                                                                            <label class="label"
+                                                                                                id="txtyear">
+                                                                                                Year</label>
+                                                                                            <% if(defaultValue){ %>
+                                                                                                <input type="number"
+                                                                                                    value="" name="year"
+                                                                                                    class="input-block-level mb-2"
+                                                                                                    placeholder="Year"
+                                                                                                    required />
+                                                                                                <% } else{ %>
+                                                                                                    <input type="number"
+                                                                                                        name="year"
+                                                                                                        value="<%=user.car_details.year%>"
+                                                                                                        class="input-block-level mb-2"
+                                                                                                        placeholder="Year"
+                                                                                                        required />
+                                                                                                    <% } %>
+
+                                                                                                        <label
+                                                                                                            type="text"
+                                                                                                            class="label"
+                                                                                                            id="txtplatenum">Plate
+                                                                                                            Number</label>
+                                                                                                        <%
+                                                                                                            if(defaultValue){%>
+                                                                                                            <input
+                                                                                                                type="text"
+                                                                                                                name="plateno"
+                                                                                                                value=""
+                                                                                                                class="input-block-level mb-2"
+                                                                                                                placeholder="Plate Number"
+                                                                                                                required />
+                                                                                                            <% } else{%>
+                                                                                                                <input
+                                                                                                                    type="text"
+                                                                                                                    name="plateno"
+                                                                                                                    value="<%=user.car_details.plateno%>"
+                                                                                                                    class="input-block-level mb-2"
+                                                                                                                    placeholder="plateno"
+                                                                                                                    required />
+                                                                                                                <% } %>
+                                                                                                                    <label
+                                                                                                                        type="text"
+                                                                                                                        class="label"
+                                                                                                                        id="aptDate">Appointment
+                                                                                                                        Date</label>
+                                                                                                                    <input
+                                                                                                                        type="date"
+                                                                                                                        value="<%=user.date%>"
+                                                                                                                        name="date"
+                                                                                                                        id="G2appointmentDate"
+                                                                                                                        class="input-block-level mb-2 w-100"
+                                                                                                                        placeholder="Date"
+                                                                                                                        required>
+
+                                                                                                                    <div
+                                                                                                                        class="form-group mt-2">
+                                                                                                                        <label
+                                                                                                                            type="text"
+                                                                                                                            class="label">
+                                                                                                                            Available
+                                                                                                                            Slots
+                                                                                                                        </label>
+                                                                                                                        <div
+                                                                                                                            class="warntext hide">
+                                                                                                                            No
+                                                                                                                            Slot
+                                                                                                                            Available
+                                                                                                                            for
+                                                                                                                            selected
+                                                                                                                            Date
+                                                                                                                        </div>
+                                                                                                                        <div class="timeDropDown w-50"
+                                                                                                                            style="display: inline-flex;">
+
+                                                                                                                            <select
+                                                                                                                                class="form-control w-50"
+                                                                                                                                name="hrs"
+                                                                                                                                id="hourSlot"
+                                                                                                                                required>
+                                                                                                                                <%
+                                                                                                                                    if(user.hrs){%>
+                                                                                                                                    <option
+                                                                                                                                        value="<%=user.hrs%>">
+                                                                                                                                        <%=user.hrs%>
+                                                                                                                                    </option>
+                                                                                                                                    <%} else
+                                                                                                                                        {%>
+                                                                                                                                        <option
+                                                                                                                                            value="">
+                                                                                                                                            hh
+                                                                                                                                        </option>
+                                                                                                                                        <%}%>
+                                                                                                                            </select>
+                                                                                                                            <label
+                                                                                                                                class="p-1">:</label>
+                                                                                                                            <select
+                                                                                                                                class="form-control w-50"
+                                                                                                                                name="minutes"
+                                                                                                                                id="minuteSlot"
+                                                                                                                                required>
+
+                                                                                                                                <%
+                                                                                                                                    if(user.minutes){%>
+                                                                                                                                    <option
+                                                                                                                                        value="<%=user.minutes%>">
+                                                                                                                                        <%=user.minutes%>
+                                                                                                                                    </option>
+                                                                                                                                    <%} else
+                                                                                                                                        {%>
+                                                                                                                                        <option
+                                                                                                                                            value="">
+                                                                                                                                            mm
+                                                                                                                                        </option>
+                                                                                                                                        <%}%>
+
+                                                                                                                            </select>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    <div
+                                                                                                                        class="form-group">
+                                                                                                                        <div
+                                                                                                                            class="form-group mt-2">
+                                                                                                                            <label>Test
+                                                                                                                                Result
+                                                                                                                            </label>
+                                                                                                                            <input
+                                                                                                                                type="text"
+                                                                                                                                id="pass"
+                                                                                                                                name="pass"
+                                                                                                                                value="<%=user.Pass == null ? '':
+                                                                                                                                user.Pass?'Pass':'Fail'%>"
+                                                                                                                                disabled
+                                                                                                                                </div>
+
+                                                                                                                            <div
+                                                                                                                                class="form-group mt-2">
+                                                                                                                                <label>
+                                                                                                                                    Feedback
+                                                                                                                                </label>
+                                                                                                                                <textarea
+                                                                                                                                    id="w3review"
+                                                                                                                                    name="comment"
+                                                                                                                                    cols="47"
+                                                                                                                                    disabled><%=user.comment%></textarea>
+                                                                                                                            </div>
+
+                                                                                                                        </div>
+
+                                                                                                                        <div
+                                                                                                                            class="row mt-4  ">
+                                                                                                                            <div
+                                                                                                                                class="col-md-12 textCenter">
+                                                                                                                                <input
+                                                                                                                                    class="sub btn btn-large btn-primary"
+                                                                                                                                    style="font-size: 16px;"
+                                                                                                                                    type="submit"
+                                                                                                                                    value="Submit"></input>
+                                                                                                                            </div>
+                                                                                                                        </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </body>
+
+</html>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script>
+
+    $(".licenseno").focusout(function () {
+        if ($(this).val().length < 5 || $(this).val().length > 10) {
+            $(this).css('border', 'solid 2px red');
+            $(".error").text("License number should be between 5 and 10 chracters");
+            $(".sub").attr("disabled", true);
+        }
+        else {
+            $(this).css('border', 'solid 1px black');
+            $(".error").text("");
+            $(".sub").removeAttr("disabled");
+        }
+    })
+
+    $("#g2Form").submit((event) => {
+        event.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: "/submit/detail",
+            data: $('#g2Form').serialize(),
+            success: (response) => {
+                if (response.error) {
+                    $(".signupAlert").addClass("hideSucessMsg");
+                    $(".signupAlertErr").removeClass("hideError");
+                    $(".signupAlertErr").css("display", "block");
+                    $(".errorText").removeClass("hideError");
+                    $(".adderrText").text(response.error)
+                } else {
+                    $(".signupAlertErr").addClass("hideError");
+                    $(".signupAlert").removeClass("hideSucessMsg");
+                    $(".errorText").addClass("hideError")
+                    $(".adderrText").text(response.message)
+                    window.scrollTo(0, 0)
+                }
+            },
+            error: () => {
+            }
+        })
+    });
+
+    $("#G2appointmentDate").change(() => {
+        event.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: "/get/availableSlots",
+            data: { "date": $("#G2appointmentDate").val() },
+            success: (response) => {
+                if (response.hourSlotG2.length > 1) {
+                    $("#hourSlot").html(response.hourSlotG2)
+                    $("#minuteSlot").html(response.mintSlotG2);
+                    $(".warntext").addClass("hide");
+                    $(".timeDropDown").removeClass("hide");
+                } else {
+                    console.log("here");
+                    $("#hourSlot").html(response.hourSlotG2)
+                    $("#minuteSlot").html(response.mintSlotG2);
+                    $(".warntext").removeClass("hide");
+                    $(".timeDropDown").addClass("hide");
+                }
+            },
+            error: () => {
+            }
+        })
+    })
+
+    $(".close").click(function () {
+        $(this).parent("div").addClass("hideSucessMsg");
+    })
+
+</script>

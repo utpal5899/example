@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head-->
+<span>
+    <%-include ("layout/head.ejs") -%>
+</span>
+
+<body>
+    <!-- Navigation-->
+    <%-include ('layout/navigation.ejs');-%>
+        <!-- Page Header-->
+        <header class="masthead">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="page-heading">
+                            <h1>G Test </h1>
+                            <span>Please confirm your information</span>
+                        </div>
+                    </div>
+                </div>
+        </header>
+        <!-- Main Content-->
+        <main class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="card col-md-10 col-lg-8 col-xl-7">
+                        <div class="my-5">
+                            <!-- * * * * * * * * * * * * * * *-->
+                            <!-- * * SB Forms Contact Form * *-->
+                            <!-- * * * * * * * * * * * * * * *-->
+                            <!-- This form is pre-integrated with SB Forms.-->
+                            <!-- To make this form functional, sign up at-->
+                            <!-- https://startbootstrap.com/solution/contact-forms-->
+                            <!-- to get an API token!-->
+
+                            <div class="alert alert-danger alert-dismissible fade signupAlertErr show hideError"
+                                role="alert" style="margin-bottom: 10px;">
+                                <strong class="adderrText">
+                                </strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="color: blue;
+                                    background: none; border: 0;">
+                                    <span aria-hidden="true">&times;</span>
+                            </div>
+
+                            <div class="alert alert-success alert-dismissible fade signupAlert show hideSucessMsg"
+                                role="alert" style="margin-bottom: 10px;">
+                                <strong class="adderrText">
+                                </strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="color: blue;
+                                    background: none;border: 0;">
+                                    <span aria-hidden="true">&times;</span>
+                            </div>
+
+                            <div class="post-heading col-md-10 col-lg-8 col-xl-7" style=" width:100%;
+                                            max-width: 650px; ">
+                                <form class="form-personal mt-4 mb-4" method="POST" id="gForm">
+                                    <h3 class="form-signin-heading  mb-4">Book a G Road Test</h3>
+                                    <span style="padding: 132px;" class="form-signin-heading textCenter mb-4">Please
+                                        check/update your
+                                        information</span>
+
+                                    <div class="mt-4 profile-pic">
+                                        <img alt="User Pic"
+                                            src="<%=user.profilePic? user.profilePic : 'https://d30y9cdsu7xlg0.cloudfront.net/png/138926-200.png' %>"
+                                            id="profile-image1" height="200">
+                                    </div>
+
+                                    <label type="text" class="label" id="txtfirstname"> First
+                                        Name</label>
+                                    <input type="text" value="<%=user.firstname%>" name="firstname"
+                                        class="input-block-level mb-2" placeholder="First Name" disabled>
+                                    <label type="text" class="label" id="txtlastname"> Last
+                                        Name</label>
+                                    <input type="text" value="<%=user.lastname%>" name="lastname"
+                                        class="input-block-level mb-2" placeholder="Last Name" disabled>
+
+                                    <label type="text" class="label" id="txtage"> Age</label>
+
+                                    <input type="number" name="age" value="<%=user.Age%>" class="input-block-level mb-2"
+                                        placeholder="Age" disabled>
+
+                                    <input type="hidden" name="id" value="<%=user._id%>" class="input-block-level"
+                                        placeholder="License Number">
+
+                                    <h4 class="form-signin-heading  mt-4 mb-4">Car Details</h4>
+                                    <div class="form-group">
+                                        <label type="text" id="txtcompany">Make</label>
+                                        <input type="text" name="make" value="<%=user.car_details?.make%>"
+                                            class="input-block-level mb-2" placeholder="Make" required>
+
+                                        <label type="text" class="label" id="txtmodelname">Model
+                                        </label>
+                                        <input type="text" name="modelno" value="<%=user.car_details.model%>"
+                                            class="input-block-level mb-2" placeholder="Model Number" required>
+                                        <label class="label" id="txtyear">
+                                            Year</label>
+                                        <input type="number" name="year" value="<%=user.car_details.year%>"
+                                            class="input-block-level mb-2" placeholder="Year" required>
+
+                                        <label type="text" class="label" id="txtplatenum">Plate
+                                            Number</label>
+                                        <input type="text" name="plateno" value="<%=user.car_details.plateno%>"
+                                            class="input-block-level mb-2" placeholder="Plate Number" required>
+
+                                        <label type="text" class="label" id="aptDate">Appointment
+                                            Date</label>
+                                        <input type="date" value="<%=user.date%>" name="date" id="G2appointmentDate"
+                                            class="input-block-level mb-2 w-100" placeholder="Date" required>
+
+                                        <div class="form-group mt-2">
+                                            <label type="text" class="label">Available Slots</label>
+                                            <div class="warntext hide">No Slot Available for selected Date</div>
+                                            <div class="timeDropDown w-50" style="display: inline-flex;">
+                                                <select class="form-control w-50" name="hrs" id="hourSlot" required>
+                                                    <% if(user.hrs){%>
+                                                        <option value="<%=user.hrs%>">
+                                                            <%=user.hrs%>
+                                                        </option>
+                                                        <%} else {%>
+                                                            <option value=""> hh </option>
+                                                            <%}%>
+                                                </select>
+                                                <label class="p-1">:</label>
+                                                <select class="form-control w-50" name="minutes" id="minuteSlot"
+                                                    required>
+                                                    <% if(user.minutes){%>
+                                                        <option value="<%=user.minutes%>">
+                                                            <%=user.minutes%>
+                                                        </option>
+                                                        <%} else {%>
+                                                            <option value=""> mm </option>
+                                                            <%}%>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-group mt-2">
+                                            <label>Test Result </label>
+                                            <input type="text" id="pass" name="pass" disabled value="<%=user.Pass == null ? '':
+                                            user.Pass?'Pass':'Fail'%>" </div>
+
+                                            <div class="form-group mt-2">
+                                                <label> Feedback </label>
+                                                <textarea id="w3review" name="comment" cols="51"
+                                                    disabled><%=user.comment%></textarea>
+                                            </div>
+
+                                        </div>
+                                        <div class="row mt-4 ">
+                                            <div class="col-md-12 textCenter">
+                                                <button class="btn btn-large btn-primary"
+                                                    style="font-size: 16px;">Update</button>
+                                            </div>
+                                        </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy;Priya Sharma/8834567
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</body>
+
+</html>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+
+    $("#gForm").submit((event) => {
+        event.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: "/G3",
+            data: $('#gForm').serialize(),
+            success: (response) => {
+                if (response.error) {
+                    $(".signupAlert").addClass("hideSucessMsg");
+                    $(".signupAlertErr").removeClass("hideError");
+                    $(".signupAlertErr").css("display", "block");
+                    $(".errorText").removeClass("hideError");
+                    $(".adderrText").text(response.error)
+                } else {
+                    $(".signupAlertErr").addClass("hideError");
+                    $(".signupAlert").removeClass("hideSucessMsg");
+                    $(".errorText").addClass("hideError")
+                    $(".adderrText").text(response.message)
+                    window.scrollTo(0, 0)
+                }
+            },
+            error: () => {
+            }
+        })
+    });
+
+    $("#G2appointmentDate").change(() => {
+        event.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: "/get/availableSlots",
+            data: { "date": $("#G2appointmentDate").val() },
+            success: (response) => {
+                if (response.hourSlotG2.length > 1) {
+                    $("#hourSlot").html(response.hourSlotG2)
+                    $("#minuteSlot").html(response.mintSlotG2);
+                    $(".warntext").addClass("hide");
+                    $(".timeDropDown").removeClass("hide");
+                } else {
+                    console.log("here");
+                    $("#hourSlot").html(response.hourSlotG2)
+                    $("#minuteSlot").html(response.mintSlotG2);
+                    $(".warntext").removeClass("hide");
+                    $(".timeDropDown").addClass("hide");
+                }
+            },
+            error: () => {
+            }
+        })
+    })
+
+    $(".close").click(function () {
+        $(this).parent("div").addClass("hideSucessMsg");
+    })
+</script>

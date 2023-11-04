@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head-->
+<%- include('layout/head.ejs'); -%>
+
+    <body>
+        <!-- Navigation-->
+        <%- include('layout/navigation.ejs');-%>
+
+            <!-- Page Header-->
+            <header class="masthead medium">
+            </header>
+
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="card col-md-10 col-lg-8 col-xl-7">
+                        <div class="alert alert-danger alert-dismissible fade signupAlertErr show hideError"
+                            role="alert" style="margin-bottom: 10px;">
+                            <strong class="adderrText">
+                            </strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="color: blue;
+                                background: none;
+                                border: 0;">
+                                <span aria-hidden="true">&times;</span>
+                        </div>
+
+                        <div class="alert alert-success alert-dismissible fade signupAlert show hideSucessMsg"
+                            role="alert" style="margin-bottom: 10px;">
+                            <strong class="adderrText">
+                            </strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="color: blue;
+                            background: none;
+                            border: 0;">
+                                <span aria-hidden="true">&times;</span>
+                        </div>
+
+
+                        <div class="mt-4 site-heading">
+                            <h3>Sign up</h3>
+
+                        </div>
+                        <div class="mt-2">
+                            <form id="contactForm" class="signupform" data-sb-form-api-token="API_TOKEN">
+
+                                <div class="profile-pic">
+
+                                    <img alt="User Pic" src="https://d30y9cdsu7xlg0.cloudfront.net/png/138926-200.png"
+                                        id="profile-image1" height="200">
+                                    <input id="profile-image-upload" class="hidden" type="file"
+                                        onchange="previewFile()">
+                                    <div style="color:#999;"> </div>
+                                    <input type="hidden" class="form-control" name="profile_pic" value="" />
+
+                                </div>
+                                <div class="">
+                                    <label>User name</label>
+                                    <input class="form-control" name="username" id="name" type="text" placeholder=""
+                                        required />
+                                </div>
+                                <br>
+                                <div class="">
+                                    <label>Password</label>
+
+                                    <input class="form-control" name="password" id="password" type="password"
+                                        placeholder="" required />
+                                    <small class="errorText"></small>
+                                </div>
+                                <br>
+                                <div class="">
+                                    <label>Confirm Password</label>
+
+                                    <input class="form-control" name="repeat_password" id="checkPassword" type="text"
+                                        placeholder="" required />
+                                    <small class="errorText"></small>
+                                </div>
+
+                                <br>
+
+                                <label for="cars">User Type</label>
+                                <select class="form-control" name="userType" id="userType">
+                                    <option value="Driver">Driver</option>
+                                    <option value="Examiner">Examiner</option>
+                                    <option value="Admin">Admin</option>
+                                </select>
+                                <br>
+                                <div class="loginAlert"> <button class="mt-2 mb-3 btn btn-primary " id="submitButton"
+                                        type="submit">Signup</button></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Main Content-->
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <!-- Post preview-->
+                        <div class="post-preview">
+                            <a href="post.html">
+                                <h2 class="post-title">All the Webpages are Designed using Node and express </h2>
+                            </a>
+                            <p class="post-meta">
+                                Created by-
+                                <a href="#!">Priya Sharma</a>
+                            </p>
+                        </div>
+                        <!-- Divider-->
+                        <hr class="my-4" />
+                        <!-- Post preview-->
+                        <!--<div class="post-preview">
+                            <a href="post.html">
+                                <h2 class="post-title">Driving Test Website.</h2>
+                            </a>
+                            <p class="post-meta">
+                                Posted on-
+                                <a href="#!">Dated</a>
+                                on January 29, 2023
+                            </p>
+                        </div>-->
+
+
+                    </div>
+                </div>
+                <!-- Footer-->
+                <footer class="border-top">
+                    <div class="container px-4 px-lg-5">
+                        <div class="row gx-4 gx-lg-5 justify-content-center">
+                            <div class="col-md-10 col-lg-8 col-xl-7">
+                                <ul class="list-inline text-center">
+                                    <li class="list-inline-item">
+                                        <a href="#!">
+                                            <span class="fa-stack fa-lg">
+                                                <i class="fas fa-circle fa-stack-2x"></i>
+                                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#!">
+                                            <span class="fa-stack fa-lg">
+                                                <i class="fas fa-circle fa-stack-2x"></i>
+                                                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#!">
+                                            <span class="fa-stack fa-lg">
+                                                <i class="fas fa-circle fa-stack-2x"></i>
+                                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="small text-center text-muted fst-italic">Copyright &copy; Priya Sharma/
+                                    8834567</div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+    </body>
+
+</html>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+<script>
+
+    function previewFile() {
+        let maxMb = 2;
+        var preview = document.querySelector('img');
+        var file = document.querySelector('input[type=file]').files[0];
+
+        let kb = file.size / 1024; // convert the file size into byte to kb
+        let mb = kb / 1024; // convert kb to mb
+
+        console.log({ mb })
+
+        if (mb > maxMb) { // if the file size is gratter than maxMb
+            alert(`Image should be less than ${maxMb} MB`);
+            return
+        }
+
+        var reader = new FileReader();
+
+        reader.addEventListener("load", function () {
+            preview.src = reader.result;
+            document.querySelector('input[name=profile_pic]').value = reader.result;
+        }, false);
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+    $(function () {
+        $('#profile-image1').on('click', function () {
+            $('#profile-image-upload').click();
+        });
+    });
+
+
+    $('.close').on("click", function () {
+        $(this).parent('div').hide();
+    });
+
+    /* ========= LOGIN / REGISTRATION FORM CLIENT SIDE VALIDATION ========= */
+    // !select elements
+    const form = document.getElementsByClassName("signupform");
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+    const checkPassword = document.getElementById("checkPassword");
+    const submit = document.getElementById("submit");
+
+    // !add event listener
+    $(".signupform").submit((event) => {
+
+        event.preventDefault();
+        const passwordValue = password.value.trim();
+        const checkPasswordValue = checkPassword.value.trim();
+        let allValid = true;
+
+        // !password validation check
+        if (passwordValue === "") {
+            setErrorMessage(password, "Password field can't be blank. Required this field.");
+
+            // focus element
+            password.focus();
+            allValid = false;
+        } else if (passwordValue.length < 6 || passwordValue.length > 20) {
+            setErrorMessage(password, "This field minimum character is 6 and maximum character is 20. Please input at this range.");
+
+            // focus element
+            password.focus();
+            allValid = false;
+        }
+
+        // !retype password validation check
+        if (checkPasswordValue === "") {
+            setErrorMessage(checkPassword, "Password field can't be blank. Required this field.");
+
+            // focus element
+            checkPassword.focus();
+            allValid = false;
+        } else if (checkPasswordValue.length < 6 || checkPasswordValue.length > 20) {
+            setErrorMessage(checkPassword, "This field minimum character is 6 and maximum character is 20. Please input at this range.");
+
+            // focus element
+            checkPassword.focus();
+            allValid = false;
+        } else if (passwordValue !== checkPasswordValue) {
+            setErrorMessage(checkPassword, "Sorry! Your define password and Retype password not match. Please input correct password.");
+
+            // focus element
+            checkPassword.focus();
+            allValid = false;
+        }
+
+        if (allValid) {
+            $.ajax({
+                type: 'POST',
+                url: '/signup',
+                data: $('.signupform').serialize(),
+                success: (response) => {
+
+                    if (response.error) {
+                        $(".signupAlert").addClass("hideSucessMsg");
+                        $(".signupAlertErr").removeClass("hideError");
+                        $(".signupAlertErr").css("display", "block");
+                        $(".errorText").removeClass("hideError");
+                        $(".adderrText").text(response.error)
+                    } else {
+                        $('.signupform')[0].reset();
+                        $(".signupAlertErr").addClass("hideError");
+                        $(".signupAlert").removeClass("hideSucessMsg");
+                        $(".errorText").addClass("hideError")
+                        $(".adderrText").text(response.message)
+                        $(".form-control").removeClass("error")
+                    }
+                },
+                error: () => {
+                }
+            })
+        }
+    });
+
+    // !input error message show function
+    function setErrorMessage(input, message) {
+        // select input field parentELement
+        const formControl = input.parentElement; // parentELement = .form-control
+        const small = formControl.querySelector("small");
+
+        // add error message inside small
+        small.innerText = message;
+
+        // add error class
+        formControl.className = "form-control error";
+    }
+
+</script>

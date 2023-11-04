@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head-->
+<span>
+    <%-include ("layout/head.ejs") -%>
+</span>
+
+<body>
+    <!-- Navigation-->
+    <%-include ('layout/navigation.ejs');-%>
+        <!-- Page Header-->
+        <header class="masthead">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="page-heading">
+                            <h1 class="mb-3">Driver List</h1>
+                            <span class="">Please check the driver detail and submit your feedback</span>
+                        </div>
+                    </div>
+                </div>
+        </header>
+        <!-- Main Content-->
+        <main class="mb-4">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="card col-md-10 col-lg-8 col-xl-12">
+                        <table id="example" class="display" width="100%">
+                            <thead class="table_head">
+                                <tr>
+                                    <th style="color: #000;">S.NO.</th>
+                                    <th>Username</th>
+                                    <th>Profile Pic</th>
+                                    <th>Test Type</th>
+                                    <th>Appointment Date</th>
+                                    <th>Appointment Time</th>
+                                    <th>Result</th>
+                                    <th class="hidden-480">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <% if(data){ for(var i=0;i < data.length;i++) { %>
+                                    <tr>
+                                        <td style="width: 5%;"> <a href="#">
+                                                <%=i+1%>
+                                            </a> </td>
+
+                                        <td style="width: 15%;">
+                                            <%=data[i].username%>
+                                        </td>
+
+                                        <td style="width: 15%;">
+                                            <img src="<%=data[i].profilePic%>" width="70px">
+                                        </td>
+
+                                        <td style="width: 15%;">
+                                            <%=data[i].TestType%>
+                                        </td>
+
+                                        <td style="width: 15%;">
+                                            <%=data[i].AppointmentId?.Date%>
+                                        </td>
+
+                                        <td style="width: 15%;">
+                                            <%=data[i].AppointmentId?.Time%>
+                                        </td>
+                                        <td style="width: 15%;">
+                                            <%=data[i].Pass==null ? '' : data[i].Pass?'Pass':'Fail'%>
+                                        </td>
+
+                                        <td class="hidden-480">
+                                            <div class="hidden-sm hidden-xs action-buttons">
+                                                <a class="green" href="view/driver/Detail/<%=data[i].id %>">
+                                                    <i class="ace-icon fa fa-eye bigger-130"></i> </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <% } }else{ %>
+                                        <tr>
+                                            <td colspan="5">No record found</td>
+                                        </tr>
+                                        <% } %>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th> </th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </main>
+        <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy;Priya Sharma/8834567
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+
+        <script>
+
+            $(document).ready(function () {
+                $('#example').DataTable({
+                    "language": {
+                        "search": "Filter Records:"
+                    },
+                    initComplete: function () {
+                        this.api()
+                            .columns()
+                            .every(function (e) {
+                                if (e == 3) {
+                                    var column = this;
+                                    var select = $('<select><option value=""> Filter Test Type</option></select>')
+                                        .appendTo($(column.footer()).empty())
+                                        .on('change', function () {
+                                            var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+                                            column.search(val ? '^' + val + '$' : '', true, false).draw();
+                                        });
+
+                                    column
+                                        .data()
+                                        .unique()
+                                        .sort()
+                                        .each(function (d, j) {
+                                            select.append('<option value="' + d + '">' + d + '</option>');
+                                        });
+                                }
+                            });
+                    },
+                });
+            });
+
+            $('.close').on("click", function () {
+                $(this).parent('div').addClass("hideError");
+            });
+
+            // !add event listener
+            $(".appointmentForm").submit((event) => {
+                event.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: "/submit/appointment",
+                    data: $('.appointmentForm').serialize(),
+                    success: (response) => {
+                        $('.appointmentForm')[0].reset();
+                        if (response.error) {
+                            $(".loginAlert").removeClass("hideError");
+                            $(".adderrText").text(response.error)
+                        } else {
+                            $(".loginAlert").removeClass("hideError");
+                            $(".adderrText").text("Appointment Slot Added Successfully!!")
+                        }
+                    },
+                    error: () => {
+                    }
+                })
+            });
+
+            $('#appointmentDate').change(() => {
+                event.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: "/get/availableHrSlot",
+                    data: { "date": $("#appointmentDate").val() },
+                    success: (response) => {
+                        $("#hourSlot").html(response)
+                        // $("#minuteSlot").html('<option value="00">00</option>')
+                    },
+                    error: () => {
+                    }
+                })
+            });
+
+            $(document).on('change', '#hourSlot', () => {
+                event.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: "/get/availableSecSlot",
+                    data: { "date": $("#appointmentDate").val(), "hrs": $("#hourSlot").val() },
+                    success: (response) => {
+                        $("#minuteSlot").html(response)
+                    },
+                    error: () => {
+                    }
+                })
+            })
+        </script>
+</body>
+
+</html>
