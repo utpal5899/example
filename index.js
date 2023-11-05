@@ -79,8 +79,9 @@ app.post("/g_page/receive_data", async(req, res) => {
       // if data contain any value then this block will run
       res.render("g_page",{ data }) 
     } else {
-      // this block will render error page 
+      // this block will render error page jwendwjkdnwdkwndkjwn
       res.render("error");
     }
   });
 });
+ 
