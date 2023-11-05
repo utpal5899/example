@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('layouts/head.ejs') -%>
+  <body>
+    <%- include('layouts/navigation.ejs') -%>
+
+    <div class="container login-container">
+      <div class="row">
+        <div class="col-md-6 login-form-1">
+          <h3>Book DriveTest</h3>
+          <form action="/g2_page/store" method="POST">
+            <div class="form-group">
+              <input
+                type="text"
+                id="f_Name"
+                name="f_Name"
+                class="form-control"
+                placeholder="First Name *"
+                value=""
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="l_Name"
+                name="l_Name"
+                placeholder="Last Name *"
+                value=""
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="license_no"
+                name="license_no"
+                minlength="8"
+                placeholder="License Number *"
+                value=""
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <input
+                type="number"
+                id="age"
+                name="age"
+                min="16"
+                max="150"
+                class="form-control"
+                placeholder="age *"
+                value=""
+                required
+              />
+            </div>
+
+            <br />
+            <div class="form-group">
+              <p>Date of Birth(DOB)</p>
+            </div>
+            <div class="form-group">
+              <input
+                type="date"
+                id="date_of_birth"
+                name="date_of_birth"
+                class="form-control"
+                min="1899-01-01"
+                max="2010-01-01"
+                value=""
+                required
+              />
+            </div>
+            <br />
+            <h5>Car details</h5>
+
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Make  *"
+                id="description"
+                name="description"
+                value=""
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="model *"
+                value=""
+                name="model_type"
+                id="model_type"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <input
+                type="number"
+                class="form-control"
+                placeholder="year *"
+                value=""
+                min="1800"
+                max="2100"
+                id="year"
+                name="year"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="plat number *"
+                value=""
+                name="plat_number"
+                id="plat_number"
+                required
+              />
+            </div>
+
+            <br />
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary" value="Submit" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('layouts/head.ejs') -%>
+  <body>
+    <%- include('layouts/navigation.ejs') -%>
+
+    <div class="container login-container">
+      <div class="row">
+        <div class="col-md-6 login-form-1">
+          <h3>License Number</h3>
+          <form action="/g_page/receive_data" method="post">
+            <div class="form-group">
+              <input
+                type="text"
+                name="license_no"
+                id="license_no"
+                class="form-control"
+                placeholder="License Number *"
+                value=""
+              />
+            </div>
+
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary" value="Search" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- if data is undefine or null then this block will not run -->
+    <% if (data) { %>
+
+    <div class="container login-container">
+      <div class="row">
+        <div class="col-md-6 login-form-1">
+          <h3 id="head_book">Update Details</h3>
+          <br />
+          <form action="/g2_page/receive_data/update_data" method="POST">
+            <div class="mb-3 row">
+              <label for="f_Name">First Name</label>
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  value="<%= data.map(user => user.f_Name)%>"
+                  id="f_Name"
+                  name="f_Name"
+                  onkeydown="return false;"
+                />
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="l_Name">Last Name</label>
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="l_Name"
+                  name="l_Name"
+                  value="<%= data.map(user => user.l_Name)%>"
+                  onkeydown="return false;"
+                />
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="license_no" class="col-sm-2 col-form-label"
+                >License Number</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="license_no"
+                  name="license_no"
+                  value="<%= data.map(user => user.license_no)%>"
+                  onkeydown="return false;"
+                />
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="age" class="col-sm-2 col-form-label">age</label>
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="age"
+                  name="age"
+                  value="<%= data.map(user => user.age)%>"
+                  onkeydown="return false;"
+                />
+              </div>
+            </div>
+
+            <div class="mb-3 row">
+              <label for="date_of_birth" class="col-sm-2 col-form-label"
+                >Date of Birth(DOB)</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="date_of_birth"
+                  name="date_of_birth"
+                  value="<%= data.map(user => user.date_of_birth)%>"
+                  onkeydown="return false;"
+                />
+              </div>
+            </div>
+            <br />
+            <h5>Car details</h5>
+
+            <div class="mb-3 row">
+              <label for="description" class="col-sm-2 col-form-label"
+                >description</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="description"
+                  name="description"
+                  value="<%= data.map(user => user.description)%>"
+                />
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="model_type" class="col-sm-2 col-form-label"
+                >model</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="model_type"
+                  name="model_type"
+                  value="<%= data.map(user => user.model_type)%>"
+                />
+              </div>
+            </div>
+
+            <div class="mb-3 row">
+              <label for="year" class="col-sm-2 col-form-label">Year</label>
+              <div class="col-sm-10">
+                <input
+                  type="number"
+                  class="form-control"
+                  min="1800"
+                  max="2100"
+                  id="year"
+                  name="year"
+                  value="<%= data.map(user => user.year)%>"
+                />
+              </div>
+            </div>
+
+            <div class="mb-3 row">
+              <label for="plat_number">plat Number</label>
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="plat_number"
+                  id="plat_number"
+                  value="<%= data.map(user => user.plat_number)%>"
+                />
+              </div>
+            </div>
+
+            <br />
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary" value="Update" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <% } %>
+  </body>
+</html>
