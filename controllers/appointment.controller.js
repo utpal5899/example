@@ -124,6 +124,8 @@ exports.driverResultList = async (req, res) => {
                 res.render('driverResult', {
                     data: result,
                     userType: req.session.user_UserType
+
+               
                 })
             }).catch((err) => {
                 console.log("ee", err);
