@@ -131,6 +131,6 @@ exports.driverResultList = async (req, res) => {
                 console.log("ee", err);
             })
     } catch (err) {
-        console.log("driver result listuhiedweghfieuwfhjifhnrkfwreiuferfuhewifuekhjfiw", err);
+        console.log("driver result branch-2", err);
     }
 }
